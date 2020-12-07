@@ -1,0 +1,18 @@
+Fitter Status : Successful - Mon Dec 07 10:56:31 2020
+Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+Revision Name : mips
+Top-level Entity Name : board
+Family : MAX 10
+Device : 10M25SAE144C8G
+Timing Models : Final
+Total logic elements : 909 / 24,960 ( 4 % )
+    Total combinational functions : 877 / 24,960 ( 4 % )
+    Dedicated logic registers : 442 / 24,960 ( 2 % )
+Total registers : 442
+Total pins : 10 / 101 ( 10 % )
+Total virtual pins : 0
+Total memory bits : 2,048 / 691,200 ( < 1 % )
+Embedded Multiplier 9-bit elements : 0 / 110 ( 0 % )
+Total PLLs : 0 / 1 ( 0 % )
+UFM blocks : 0 / 1 ( 0 % )
+ADC blocks : 0 / 1 ( 0 % )

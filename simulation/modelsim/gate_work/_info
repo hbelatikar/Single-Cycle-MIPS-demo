@@ -1,0 +1,81 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Quartus/Max10/demo_mips/simulation/modelsim
+vboard
+Z1 !s110 1606967458
+!i10b 1
+!s100 64i==WU8^7cJ>6Um2NP[:3
+!s11b Dg1SIo80bB@j0V0VzS_@n1
+IfTdVG4VKf7LKA_>g1IhhG2
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1606964190
+8mips.vo
+Fmips.vo
+!i122 0
+L0 32 23003
+OV;L;2020.1;71
+r1
+!s85 0
+31
+Z2 !s108 1606967458.000000
+!s107 mips.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|mips.vo|
+!i113 1
+o-vlog01compat -work work
+!s92 -vlog01compat -work work +incdir+.
+tCvgOpt 0
+Eboard_tb
+Z3 w1606960156
+Z4 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z5 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z6 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z7 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 1
+R0
+Z8 8D:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd
+Z9 FD:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd
+l0
+L8 1
+VnEo2X=zL1XEWP9ZQ`9]Il2
+!s100 1n><7CQ@J?V>9TFcEO>Zz3
+Z10 OV;C;2020.1;71
+31
+R1
+!i10b 1
+R2
+Z11 !s90 -reportprogress|300|-93|-work|work|D:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd|
+!s107 D:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Atest
+R4
+R5
+R6
+R7
+DEx4 work 8 board_tb 0 22 nEo2X=zL1XEWP9ZQ`9]Il2
+!i122 1
+l24
+L11 50
+V4z@jC:c[G_A0@ah0OMHG_0
+!s100 D92oQK5WbilaX9Ai:>Xdl3
+R10
+31
+R1
+!i10b 1
+R2
+R11
+Z14 !s107 D:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd|
+!i113 1
+R12
+R13

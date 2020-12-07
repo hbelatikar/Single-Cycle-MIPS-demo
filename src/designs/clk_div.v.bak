@@ -1,0 +1,31 @@
+module clkDivider (
+	input clk,
+	input rst,
+	output reg clk_out
+	);
+	
+	localparam [15:0] constNos = 25000;
+	
+	reg [15:0] counter;
+	
+	always @(posedge clk or negedge rst)
+	begin
+		if(!rst)
+			counter <= 16'b0;
+		else if(counter == constNos-1)
+			counter <= 16'b0;
+		else
+			counter <= counter + 1'b1;
+	end
+	
+	always @(posedge clk or negedge rst)
+	begin
+		if(!rst)
+			clk_out <= 1'b0;
+		else if(counter == constNos-1)
+			clk_out <= ~clk_out;
+		else
+			clk_out <= clk_out;
+	end
+	
+endmodule //End clkDivider

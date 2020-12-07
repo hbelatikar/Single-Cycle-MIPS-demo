@@ -1,0 +1,57 @@
+----------------------------------------------------------------------------------------------
+-------------- INSTRUCTION MEMORY (imem) -----------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; 
+  use IEEE.STD_LOGIC_1164.all; use STD.TEXTIO.all;
+  --use IEEE.NUMERIC_STD_UNSIGNED.all;  
+  use ieee.std_logic_unsigned.all ;
+  use ieee.std_logic_arith.all ;
+
+  entity imem is -- instruction memory
+    port(a:  in  STD_LOGIC_VECTOR(5 downto 0);
+        rd: out STD_LOGIC_VECTOR(31 downto 0));
+  end;  --end imem entity
+
+  architecture behave of imem is
+      type ramtype is array (0 to 63) of STD_LOGIC_VECTOR(31 downto 0);
+
+      signal mem: ramtype := (
+        x"20020005" ,
+        x"2003000c" ,
+        x"2067fff7" ,
+        x"00e22025" ,
+        x"00642824" ,
+        x"00a42820" ,
+        x"10a7000a" ,
+        x"0064202a" ,
+        x"10800001" ,
+        x"20050000" ,
+        x"00e2202a" ,
+        x"00853820" ,
+        x"00e23822" ,
+        x"ac670044" ,
+        x"8c020050" ,
+        x"08000011" ,
+        x"20020001" ,
+        x"ac020054" ,
+        x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000" , 		
+        x"00000000" , 		x"00000000" , 		x"00000000" , 		x"00000000"	 
+      );  -- END mem SIGNAL
+
+  begin --BEGIN ARCHITECTURE
+    process (a) 
+    begin	--BEGIN process(a)
+	     rd <= mem(conv_integer(a));
+    end process; --END process(a)
+  end; --END ARCHITECTURE behave OF imem

@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Mon Dec 07 10:56:21 2020
+Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+Revision Name : mips
+Top-level Entity Name : board
+Family : MAX 10
+Total logic elements : 1,130
+    Total combinational functions : 876
+    Dedicated logic registers : 442
+Total registers : 442
+Total pins : 10
+Total virtual pins : 0
+Total memory bits : 2,048
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0
+UFM blocks : 0
+ADC blocks : 0

@@ -1,0 +1,767 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Quartus/Max10/demo_mips/simulation/modelsim
+Eadder
+Z1 w1606903681
+Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 7
+R0
+Z6 8D:/Quartus/Max10/demo_mips/src/designs/data_path_components.vhd
+Z7 FD:/Quartus/Max10/demo_mips/src/designs/data_path_components.vhd
+l0
+L12 1
+VeWTPH4JjgSmoRZAF_NB6W2
+!s100 C3=5aIPf]nWDe1QzYoF^i0
+Z8 OV;C;2020.1;71
+33
+Z9 !s110 1607055181
+!i10b 1
+Z10 !s108 1607055181.000000
+Z11 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/designs/data_path_components.vhd|
+Z12 !s107 D:/Quartus/Max10/demo_mips/src/designs/data_path_components.vhd|
+!i113 1
+Z13 o-2008 -work work
+Z14 tExplicit 1 CvgOpt 0
+Abehave
+R2
+R3
+R4
+R5
+DEx4 work 5 adder 0 22 eWTPH4JjgSmoRZAF_NB6W2
+!i122 7
+l18
+L17 4
+VHg107TKTMMfbj90H<D1J>2
+!s100 Qj<YOd2HlFDYHjdQ`PdLY2
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ealu
+R1
+R2
+R3
+R4
+R5
+!i122 7
+R0
+R6
+R7
+l0
+L109 1
+V0W^BNC;A;M?4jMNcba[7e0
+!s100 ijbaV]OOlnJIU_0UOFLjI0
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Abehave
+R2
+R3
+R4
+R5
+DEx4 work 3 alu 0 22 0W^BNC;A;M?4jMNcba[7e0
+!i122 7
+l118
+L116 18
+VR0n<ZbGP2iTJ6MoYDkJie2
+!s100 31LgO=6IgNTGHaLl5`eTN0
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ealudec
+Z15 w1606903577
+R4
+R5
+!i122 6
+R0
+Z16 8D:/Quartus/Max10/demo_mips/src/designs/control_path_components.vhd
+Z17 FD:/Quartus/Max10/demo_mips/src/designs/control_path_components.vhd
+l0
+L47 1
+VQGD:M^[HkC7X@4i_nOHT?3
+!s100 lKOk7iR]O^D8UMg8<0W`[0
+R8
+33
+R9
+!i10b 1
+R10
+Z18 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/designs/control_path_components.vhd|
+Z19 !s107 D:/Quartus/Max10/demo_mips/src/designs/control_path_components.vhd|
+!i113 1
+R13
+R14
+Abehave
+R4
+R5
+DEx4 work 6 aludec 0 22 QGD:M^[HkC7X@4i_nOHT?3
+!i122 6
+l56
+L55 17
+V4074kaG3M[bkl5Jk[C@j@3
+!s100 ?a;=CFEU[Tk6_2Haaj9C<3
+R8
+33
+R9
+!i10b 1
+R10
+R18
+R19
+!i113 1
+R13
+R14
+Eboard
+Z20 w1607055143
+R2
+R3
+R4
+R5
+!i122 8
+R0
+Z21 8D:/Quartus/Max10/demo_mips/src/designs/board.vhd
+Z22 FD:/Quartus/Max10/demo_mips/src/designs/board.vhd
+l0
+L8 1
+VCW<aT[7zlWm52L20;]Q^61
+!s100 ^U5dn2bZ1aXa3[gBM_AhF1
+R8
+33
+R9
+!i10b 1
+R10
+Z23 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/designs/board.vhd|
+Z24 !s107 D:/Quartus/Max10/demo_mips/src/designs/board.vhd|
+!i113 1
+R13
+R14
+Aboard_arch
+R2
+R3
+R4
+R5
+DEx4 work 5 board 0 22 CW<aT[7zlWm52L20;]Q^61
+!i122 8
+l37
+L18 38
+V7IUFk:@@QM4jUX=X2KkQ51
+!s100 D]ZMIo6g<Vme0QUmE;gdG3
+R8
+33
+R9
+!i10b 1
+R10
+R23
+R24
+!i113 1
+R13
+R14
+Eboard_tb
+Z25 w1606969121
+R2
+R3
+R4
+R5
+!i122 9
+R0
+Z26 8D:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd
+Z27 FD:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd
+l0
+L8 1
+Vg]7chOk[j5z6dd^LM[>2F2
+!s100 1n><7CQ@J?V>9TFcEO>Zz3
+R8
+33
+R9
+!i10b 1
+R10
+Z28 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd|
+!s107 D:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd|
+!i113 1
+R13
+R14
+Atest
+R2
+R3
+R4
+R5
+DEx4 work 8 board_tb 0 22 g]7chOk[j5z6dd^LM[>2F2
+!i122 9
+l24
+L11 50
+VY4L`JYAS7D8cfW@zDO:Mz0
+!s100 D92oQK5WbilaX9Ai:>Xdl3
+R8
+33
+R9
+!i10b 1
+R10
+R28
+Z29 !s107 D:/Quartus/Max10/demo_mips/src/tb/board_tb.vhd|
+!i113 1
+R13
+R14
+vclk_div
+!s110 1607055180
+!i10b 1
+!s100 Vj[C_U9?T5[MRJnA^^F?_3
+!s11b Dg1SIo80bB@j0V0VzS_@n1
+Iz<1F=ACSOZ6M2Kncf`XJ63
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1606987435
+8D:/Quartus/Max10/demo_mips/src/designs/clk_div.v
+FD:/Quartus/Max10/demo_mips/src/designs/clk_div.v
+!i122 0
+L0 1 31
+OV;L;2020.1;71
+r1
+!s85 0
+31
+Z30 !s108 1607055180.000000
+!s107 D:/Quartus/Max10/demo_mips/src/designs/clk_div.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Quartus/Max10/demo_mips/src/designs|D:/Quartus/Max10/demo_mips/src/designs/clk_div.v|
+!i113 1
+o-vlog01compat -work work
+!s92 -vlog01compat -work work +incdir+D:/Quartus/Max10/demo_mips/src/designs
+tCvgOpt 0
+Econtroller
+Z31 w1606955990
+R4
+R5
+!i122 5
+R0
+Z32 8D:/Quartus/Max10/demo_mips/src/designs/mips_core.vhd
+Z33 FD:/Quartus/Max10/demo_mips/src/designs/mips_core.vhd
+l0
+L68 1
+VG`C@0<dGNn>Xhzmlo8EoE0
+!s100 g>id=eAa44RFdJFcQn`dF3
+R8
+33
+R9
+!i10b 1
+R10
+Z34 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/designs/mips_core.vhd|
+Z35 !s107 D:/Quartus/Max10/demo_mips/src/designs/mips_core.vhd|
+!i113 1
+R13
+R14
+Astruct
+R4
+R5
+DEx4 work 10 controller 0 22 G`C@0<dGNn>Xhzmlo8EoE0
+!i122 5
+l95
+L79 23
+VHNG9fnU2h1baO9ngi3HiD0
+!s100 fMRm6aOOoolOG^3Z1RRz=3
+R8
+33
+R9
+!i10b 1
+R10
+R34
+R35
+!i113 1
+R13
+R14
+Edata_mem
+Z36 w1606901797
+Z37 DPx9 altera_mf 20 altera_mf_components 0 22 BN6nPmY:UEbXa[^5b@FTW1
+R4
+R5
+!i122 1
+R0
+Z38 8D:/Quartus/Max10/demo_mips/src/ip/data_mem.vhd
+Z39 FD:/Quartus/Max10/demo_mips/src/ip/data_mem.vhd
+l0
+L43 1
+VRaP<WXkKi7bIGCf``RYPh0
+!s100 1FdzJ3z8Y[NHb6PonINHi2
+R8
+33
+R9
+!i10b 1
+R30
+Z40 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/ip/data_mem.vhd|
+Z41 !s107 D:/Quartus/Max10/demo_mips/src/ip/data_mem.vhd|
+!i113 1
+R13
+R14
+Asyn
+R37
+R4
+R5
+DEx4 work 8 data_mem 0 22 RaP<WXkKi7bIGCf``RYPh0
+!i122 1
+l59
+L55 35
+VK0=8V]Vd>KC8L7cAJYYQ<1
+!s100 `G24CDcoRJ?XUY7S7Tf`c3
+R8
+33
+R9
+!i10b 1
+R30
+R40
+R41
+!i113 1
+R13
+R14
+Edatapath
+R31
+R2
+R4
+R5
+!i122 5
+R0
+R32
+R33
+l0
+L110 1
+VT:BYHnH>jI9og<A>>YV6k2
+!s100 Ji`cbG[c0FTVf_Z6AY^o71
+R8
+33
+R9
+!i10b 1
+R10
+R34
+R35
+!i113 1
+R13
+R14
+Astruct
+R2
+R4
+R5
+DEx4 work 8 datapath 0 22 T:BYHnH>jI9og<A>>YV6k2
+!i122 5
+l169
+L123 81
+Vg]55ZeV;22abRg:8n=MI71
+!s100 6<;@eU?O0h6[fLFEo@Go:2
+R8
+33
+R9
+!i10b 1
+R10
+R34
+R35
+!i113 1
+R13
+R14
+Eflopr
+R1
+R2
+R4
+R5
+!i122 7
+R0
+R6
+R7
+l0
+L62 1
+VHANWL@ohECcb8S?]Z?ij`2
+!s100 0mMH]2FJg9hehhTHchn2c0
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Aasynchronous
+R2
+R4
+R5
+DEx4 work 5 flopr 0 22 HANWL@ohECcb8S?]Z?ij`2
+!i122 7
+l71
+L70 9
+VY<dj:f8PKkPh9e]Q9md9<0
+!s100 3QkaT]@e;[WKhHDN1U^EN2
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Eimem
+Z42 w1606987736
+R2
+R3
+R4
+R5
+!i122 2
+R0
+Z43 8D:/Quartus/Max10/demo_mips/src/designs/imem.vhd
+Z44 FD:/Quartus/Max10/demo_mips/src/designs/imem.vhd
+l0
+L11 1
+VANMDZ:cLnVBCSeZM1`[HN0
+!s100 :TEU5Ea2bQZH0Z[>]a?B`3
+R8
+33
+R9
+!i10b 1
+R10
+Z45 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/designs/imem.vhd|
+Z46 !s107 D:/Quartus/Max10/demo_mips/src/designs/imem.vhd|
+!i113 1
+R13
+R14
+Abehave
+R2
+R3
+R4
+R5
+DEx4 work 4 imem 0 22 ANMDZ:cLnVBCSeZM1`[HN0
+!i122 2
+l112
+L16 102
+VY65S`8bHA;N5`EIn<BjYC2
+!s100 =?;on4P8_o]5^N;S4BmT20
+R8
+33
+R9
+!i10b 1
+R10
+R45
+R46
+!i113 1
+R13
+R14
+Emaindec
+R15
+R4
+R5
+!i122 6
+R0
+R16
+R17
+l0
+L8 1
+V;3^c_gZ^bW>A<z3Tkoe3_1
+!s100 7MW[2cakY<]BO8IYn:?lQ2
+R8
+33
+R9
+!i10b 1
+R10
+R18
+R19
+!i113 1
+R13
+R14
+Abehave
+R4
+R5
+DEx4 work 7 maindec 0 22 ;3^c_gZ^bW>A<z3Tkoe3_1
+!i122 6
+l21
+L19 21
+VaTcc7Y<AzHoaWcZj4FaL51
+!s100 2SRZbW8=UITJd^PbT611?3
+R8
+33
+R9
+!i10b 1
+R10
+R18
+R19
+!i113 1
+R13
+R14
+Emips
+Z47 w1606960013
+R2
+R3
+R4
+R5
+!i122 4
+R0
+Z48 8D:/Quartus/Max10/demo_mips/src/designs/mips.vhd
+Z49 FD:/Quartus/Max10/demo_mips/src/designs/mips.vhd
+l0
+L8 1
+VA?>[iPh2e_`l4S>FaVej23
+!s100 HB9I2;lnJfbCZhQC1>TE63
+R8
+33
+R9
+!i10b 1
+R10
+Z50 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/designs/mips.vhd|
+Z51 !s107 D:/Quartus/Max10/demo_mips/src/designs/mips.vhd|
+!i113 1
+R13
+R14
+Atest
+R2
+R3
+R4
+R5
+DEx4 work 4 mips 0 22 A?>[iPh2e_`l4S>FaVej23
+!i122 4
+l49
+L16 44
+V_]RLLMPl@BT`[fUESETAC2
+!s100 GR0bizN73fO=:8WC7jS]32
+R8
+33
+R9
+!i10b 1
+R10
+R50
+R51
+!i113 1
+R13
+R14
+Emips_core
+R31
+R4
+R5
+!i122 5
+R0
+R32
+R33
+l0
+L8 1
+VVgB[e^R@9BmaWCDhK3ahU1
+!s100 _IB[lDL;K8d<nYQ4CZA>a0
+R8
+33
+R9
+!i10b 1
+R10
+R34
+R35
+!i113 1
+R13
+R14
+Astruct
+R4
+R5
+DEx4 work 9 mips_core 0 22 VgB[e^R@9BmaWCDhK3ahU1
+!i122 5
+l52
+L19 42
+VW`BTF0L[2=d3NS71KDV4I0
+!s100 KThnM;=bS>bGQNCDQ2e7]2
+R8
+33
+R9
+!i10b 1
+R10
+R34
+R35
+!i113 1
+R13
+R14
+Emux2
+R1
+R4
+R5
+!i122 7
+R0
+R6
+R7
+l0
+L87 1
+VWhOZlh;j0B19ol;ifGBhf0
+!s100 G@[>j9z17AEPZhL`?F<6A3
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Abehave
+R4
+R5
+DEx4 work 4 mux2 0 22 WhOZlh;j0B19ol;ifGBhf0
+!i122 7
+l95
+L94 4
+V1V>551HLj>Ma[kGLh<;Jn1
+!s100 HWk<28^HN=;[BHQ^@5cJY3
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Eregfile
+Z52 w1606902777
+R2
+R3
+R4
+R5
+!i122 3
+R0
+Z53 8D:/Quartus/Max10/demo_mips/src/designs/regfile.vhd
+Z54 FD:/Quartus/Max10/demo_mips/src/designs/regfile.vhd
+l0
+L10 1
+V>kmPAPL^72W:B;0[9oV_F1
+!s100 VAnP7>WAF4lNJh<MVn7c]0
+R8
+33
+R9
+!i10b 1
+R10
+Z55 !s90 -reportprogress|300|-2008|-work|work|D:/Quartus/Max10/demo_mips/src/designs/regfile.vhd|
+Z56 !s107 D:/Quartus/Max10/demo_mips/src/designs/regfile.vhd|
+!i113 1
+R13
+R14
+Abehave
+R2
+R3
+R4
+R5
+DEx4 work 7 regfile 0 22 >kmPAPL^72W:B;0[9oV_F1
+!i122 3
+l23
+L20 27
+VDN78DgMJK;[IfZX4YLnIG0
+!s100 e_fAm][N1TlY>bz5X;eco3
+R8
+33
+R9
+!i10b 1
+R10
+R55
+R56
+!i113 1
+R13
+R14
+Esignext
+R1
+R4
+R5
+!i122 7
+R0
+R6
+R7
+l0
+L45 1
+VK2^IGLU8]KQoeoo]gPLFN0
+!s100 =B4c^ohR^BmkARAL[BcJW2
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Abehave
+R4
+R5
+DEx4 work 7 signext 0 22 K2^IGLU8]KQoeoo]gPLFN0
+!i122 7
+l51
+L50 4
+VCLfz>i;Q:aMiKDK[C1fVE0
+!s100 V?SNMZ9fTSMkGJ8BQRGoH2
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Esl2
+R1
+R4
+R5
+!i122 7
+R0
+R6
+R7
+l0
+L28 1
+VddW;bZ5iNDC=zK?5g^4>W2
+!s100 nGYM783Ve8_5m`09G[OfK2
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Abehave
+R4
+R5
+DEx4 work 3 sl2 0 22 ddW;bZ5iNDC=zK?5g^4>W2
+!i122 7
+l34
+L33 4
+V=3KN6;KGd1z7A;O2@MCEh0
+!s100 S^PkfJlXboMBRKA>>@AJ:2
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14

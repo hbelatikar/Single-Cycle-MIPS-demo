@@ -1,0 +1,2 @@
+Critical Warning (332012): Synopsys Design Constraints File file not found: 'mips.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Warning (332060): Node: clk was determined to be a clock but was found without an associated clock assignment.

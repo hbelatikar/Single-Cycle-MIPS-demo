@@ -1,0 +1,16 @@
+-- board.vhd
+
+library IEEE; 
+use IEEE.STD_LOGIC_1164.all; 
+use ieee.std_logic_unsigned.all ;
+use ieee.std_logic_arith.all ;
+
+entity board is
+	port(
+		clk	: in	STD_LOGIC;
+		reset	: in	STD_LOGIC;
+		switch: in	STD_LOGIC_VECTOR (7 downto 0);
+		leds	: out	STD_LOGIC_VECTOR (7 downto 0);
+	);
+	
+end entity;

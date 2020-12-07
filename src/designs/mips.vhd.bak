@@ -1,0 +1,406 @@
+-- mips_core.vhd
+-- TAs of EE-705 ( 11th April 2019 , for EE-705 )
+
+library IEEE; 
+use IEEE.STD_LOGIC_1164.all; 
+--use IEEE.NUMERIC_STD_UNSIGNED.all;
+use ieee.std_logic_unsigned.all ;
+use ieee.std_logic_arith.all ;
+
+entity mips_core is -- mips core + memories
+  port(clk, reset				: in     STD_LOGIC;
+       writedata, dataadr	: buffer STD_LOGIC_VECTOR(31 downto 0);
+       memwrite				: buffer STD_LOGIC;
+		 clk_out					: out 	STD_LOGIC;
+		 );
+end;  -- END ENTITY mips_core
+
+architecture test of mips_core is
+	component mips port
+	(
+		clk, reset			: in  STD_LOGIC;
+		pc						: out STD_LOGIC_VECTOR(31 downto 0);
+		instr					: in  STD_LOGIC_VECTOR(31 downto 0);
+		memwrite				: out STD_LOGIC;
+		aluout, writedata	: out STD_LOGIC_VECTOR(31 downto 0);
+		readdata				: in  STD_LOGIC_VECTOR(31 downto 0)
+	);
+	end component; --END COMPONENT mips
+
+	component imem port
+	(
+		a :  in  STD_LOGIC_VECTOR(5 downto 0);
+		rd: out STD_LOGIC_VECTOR(31 downto 0)
+	);
+	end component; --END COMPONENT imem
+
+	component data_mem PORT
+	(
+		address	: IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
+		clock		: IN  STD_LOGIC  := '1';
+		data		: IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
+		wren		: IN  STD_LOGIC ;
+		q			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+	);
+	end component; --END COMPONENT data_mem
+
+
+	signal pc, instr, readdata	: STD_LOGIC_VECTOR(31 downto 0) := ( others => '0' );
+	signal clk_bar 				: STD_LOGIC;
+
+begin --begine architecture test
+   
+	-- instantiate processor and memories
+	mips1: mips 		port map (clk, reset, pc, instr, memwrite, dataadr, writedata, readdata);
+	imem1: imem 		port map (pc(7 downto 2), instr);
+	dmem1: data_mem 	port map (dataadr(7 downto 2), clk_bar, writedata, memwrite, readdata);
+
+	clk_out <= clk;
+	clk_bar <= not clk ;
+
+end; -- end architecture test of mips_core
+
+
+
+
+----------------------------------------------------------------------------------------------
+-------------- SINGLE CYCLE CONTROL DECODER (controller) -------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; use IEEE.STD_LOGIC_1164.all;
+
+  entity controller is -- single cycle control decoder
+    port(op, funct:          in  STD_LOGIC_VECTOR(5 downto 0);
+        zero:               in  STD_LOGIC;
+        memtoreg, memwrite: out STD_LOGIC;
+        pcsrc, alusrc:      out STD_LOGIC;
+        regdst, regwrite:   out STD_LOGIC;
+        jump:               out STD_LOGIC;
+        alucontrol:         out STD_LOGIC_VECTOR(2 downto 0));
+  end;
+
+
+  architecture struct of controller is
+    component maindec
+      port(op:                 in  STD_LOGIC_VECTOR(5 downto 0);
+          memtoreg, memwrite: out STD_LOGIC;
+          branch, alusrc:     out STD_LOGIC;
+          regdst, regwrite:   out STD_LOGIC;
+          jump:               out STD_LOGIC;
+          aluop:              out STD_LOGIC_VECTOR(1 downto 0));
+    end component;
+    component aludec
+      port(funct:      in  STD_LOGIC_VECTOR(5 downto 0);
+          aluop:      in  STD_LOGIC_VECTOR(1 downto 0);
+          alucontrol: out STD_LOGIC_VECTOR(2 downto 0));
+    end component;
+    signal aluop:  STD_LOGIC_VECTOR(1 downto 0);
+    signal branch: STD_LOGIC;
+  begin
+    md: maindec port map(op, memtoreg, memwrite, branch,
+                        alusrc, regdst, regwrite, jump, aluop);
+    ad: aludec port map(funct, aluop, alucontrol);
+
+    pcsrc <= branch and zero;
+  end;
+
+----------------------------------------------------------------------------------------------
+-------------- MAIN CONTROL DECODER (maindec) ------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; use IEEE.STD_LOGIC_1164.all;
+
+  entity maindec is -- main control decoder
+    port(op:                 in  STD_LOGIC_VECTOR(5 downto 0);
+         memtoreg, memwrite: out STD_LOGIC;
+         branch, alusrc:     out STD_LOGIC;
+         regdst, regwrite:   out STD_LOGIC;
+         jump:               out STD_LOGIC;
+         aluop:              out STD_LOGIC_VECTOR(1 downto 0));
+  end;
+
+  architecture behave of maindec is
+    signal controls: STD_LOGIC_VECTOR(8 downto 0);
+  begin
+    process(all) begin
+      case op is
+        when "000000" => controls <= "110000010"; -- RTYPE
+        when "100011" => controls <= "101001000"; -- LW
+        when "101011" => controls <= "001010000"; -- SW
+        when "000100" => controls <= "000100001"; -- BEQ
+        when "001000" => controls <= "101000000"; -- ADDI
+        when "000010" => controls <= "000000100"; -- J
+        when others   => controls <= "---------"; -- illegal op
+      end case;
+    end process;
+
+    -- (regwrite, regdst, alusrc, branch, memwrite, memtoreg, jump, aluop(1 downto 0)) <= controls;
+    (regwrite, regdst, alusrc, branch, memwrite, memtoreg, jump ) <= controls (8 downto 2 );
+    aluop(1 downto 0) <= controls(1 downto 0);
+  end;
+
+----------------------------------------------------------------------------------------------
+-------------- ALU CONTROL DECODER (aludec) --------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; use IEEE.STD_LOGIC_1164.all;
+
+  entity aludec is -- ALU control decoder
+    port(funct:      in  STD_LOGIC_VECTOR(5 downto 0);
+         aluop:      in  STD_LOGIC_VECTOR(1 downto 0);
+         alucontrol: out STD_LOGIC_VECTOR(2 downto 0));
+  end;
+
+  architecture behave of aludec is
+  begin
+    process(all) begin
+      case aluop is
+        when "00" => alucontrol <= "010"; -- add (for lw/sw/addi)
+        when "01" => alucontrol <= "110"; -- sub (for beq)
+        when others => case funct is      -- R-type instructions
+                        when "100000" => alucontrol <= "010"; -- add 
+                        when "100010" => alucontrol <= "110"; -- sub
+                        when "100100" => alucontrol <= "000"; -- and
+                        when "100101" => alucontrol <= "001"; -- or
+                        when "101010" => alucontrol <= "111"; -- slt
+                        when others   => alucontrol <= "---"; -- ???
+                      end case;
+      end case;
+    end process;
+  end;
+
+----------------------------------------------------------------------------------------------
+-------------- MIPS DATA PATH (datapath) -----------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; use IEEE.STD_LOGIC_1164.all; 
+  use IEEE.STD_LOGIC_ARITH.all;
+
+  entity datapath is  -- MIPS datapath
+    port(clk, reset:        in  STD_LOGIC;
+         memtoreg, pcsrc:   in  STD_LOGIC;
+         alusrc, regdst:    in  STD_LOGIC;
+         regwrite, jump:    in  STD_LOGIC;
+         alucontrol:        in  STD_LOGIC_VECTOR(2 downto 0);
+         zero:              out STD_LOGIC;
+         pc:                buffer STD_LOGIC_VECTOR(31 downto 0);
+         instr:             in  STD_LOGIC_VECTOR(31 downto 0);
+         aluout, writedata: buffer STD_LOGIC_VECTOR(31 downto 0);
+         readdata:          in  STD_LOGIC_VECTOR(31 downto 0));
+  end;
+
+  architecture struct of datapath is
+    component alu
+      port(a, b:       in  STD_LOGIC_VECTOR(31 downto 0);
+          alucontrol: in  STD_LOGIC_VECTOR(2 downto 0);
+          result:     buffer STD_LOGIC_VECTOR(31 downto 0);
+          zero:       out STD_LOGIC);
+    end component;
+    component regfile
+      port(clk:           in  STD_LOGIC;
+          we3:           in  STD_LOGIC;
+          ra1, ra2, wa3: in  STD_LOGIC_VECTOR(4 downto 0);
+          wd3:           in  STD_LOGIC_VECTOR(31 downto 0);
+          rd1, rd2:      out STD_LOGIC_VECTOR(31 downto 0));
+    end component;
+    component adder
+      port(a, b: in  STD_LOGIC_VECTOR(31 downto 0);
+          y:    out STD_LOGIC_VECTOR(31 downto 0));
+    end component;
+    component sl2
+      port(a: in  STD_LOGIC_VECTOR(31 downto 0);
+          y: out STD_LOGIC_VECTOR(31 downto 0));
+    end component;
+    component signext
+      port(a: in  STD_LOGIC_VECTOR(15 downto 0);
+          y: out STD_LOGIC_VECTOR(31 downto 0));
+    end component;
+    component flopr generic(width: integer);
+      port(clk, reset: in  STD_LOGIC;
+          d:          in  STD_LOGIC_VECTOR(width-1 downto 0);
+          q:          out STD_LOGIC_VECTOR(width-1 downto 0));
+    end component;
+    component mux2 generic(width: integer);
+      port(d0, d1: in  STD_LOGIC_VECTOR(width-1 downto 0);
+          s:      in  STD_LOGIC;
+          y:      out STD_LOGIC_VECTOR(width-1 downto 0));
+    end component;
+    
+    signal writereg:           STD_LOGIC_VECTOR(4 downto 0);
+    signal pcjump, 
+           pcnext, 
+           pcnextbr, 
+           pcplus4, 
+           pcbranch:           STD_LOGIC_VECTOR(31 downto 0);
+    signal signimm, signimmsh: STD_LOGIC_VECTOR(31 downto 0);
+    signal srca, srcb, result: STD_LOGIC_VECTOR(31 downto 0);
+  
+  begin
+    -- Next PC logic
+    pcjump <= pcplus4(31 downto 28) & instr(25 downto 0) & "00";
+   
+    immsh:    sl2   port    map (signimm, signimmsh);
+    pcadd1:   adder port    map (pc, X"00000004", pcplus4);
+    pcadd2:   adder port    map (pcplus4, signimmsh, pcbranch);
+    pcreg:    flopr generic map (32) 
+                    port    map (clk, reset, pcnext, pc);
+    pcbrmux:  mux2  generic map (32) 
+                    port    map (pcplus4, pcbranch, pcsrc, pcnextbr);
+    pcmux:    mux2  generic map (32) 
+                    port    map (pcnextbr, pcjump, jump, pcnext);
+
+    -- Register file logic
+    rf: regfile port map( clk, regwrite, instr(25 downto 21), 
+                          instr(20 downto 16), writereg, result,
+                          srca, writedata );
+
+    wrmux: mux2 generic map(5) 
+                port    map( instr(20 downto 16), 
+                             instr(15 downto 11), 
+                             regdst, writereg );
+
+    resmux: mux2  generic map(32) 
+                  port    map( aluout, readdata, 
+                               memtoreg, result );
+    
+    se: signext port map(instr(15 downto 0), signimm);
+
+    -- ALU logic
+    srcbmux: mux2 generic map(32) port map(writedata, signimm, alusrc, 
+                                          srcb);
+    mainalu: alu port map(srca, srcb, alucontrol, aluout, zero);
+  end;
+
+
+----------------------------------------------------------------------------------------------
+-------------- ADDER (adder) -----------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; 
+  use IEEE.STD_LOGIC_1164.all; 
+  --use IEEE.NUMERIC_STD_UNSIGNED.all;
+  use ieee.std_logic_unsigned.all ;
+  use ieee.std_logic_arith.all ;
+
+  entity adder is -- adder
+    port(a, b: in  STD_LOGIC_VECTOR(31 downto 0);
+        y:    out STD_LOGIC_VECTOR(31 downto 0));
+  end;
+
+  architecture behave of adder is
+  begin
+    y <= a + b;
+  end;
+
+----------------------------------------------------------------------------------------------
+-------------- LEFT SHIFT BY 2 (s12) ---------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; use IEEE.STD_LOGIC_1164.all;
+
+  entity sl2 is -- shift left by 2
+    port(a: in  STD_LOGIC_VECTOR(31 downto 0);
+         y: out STD_LOGIC_VECTOR(31 downto 0));
+  end;
+
+  architecture behave of sl2 is
+  begin
+    y <= a(29 downto 0) & "00";
+  end;
+
+----------------------------------------------------------------------------------------------
+-------------- SIGN EXTENDER (signext) -------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; 
+  use IEEE.STD_LOGIC_1164.all;
+
+  entity signext is -- sign extender
+    port(a: in  STD_LOGIC_VECTOR(15 downto 0);
+         y: out STD_LOGIC_VECTOR(31 downto 0));
+  end;
+
+  architecture behave of signext is
+  begin
+    y <= X"ffff" & a when a(15) else X"0000" & a; 
+  end;
+
+----------------------------------------------------------------------------------------------
+-------------- SYNC RST FLIP FLOP (flopr) ----------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; use IEEE.STD_LOGIC_1164.all;  
+  use IEEE.STD_LOGIC_ARITH.all;
+
+  entity flopr is -- flip-flop with synchronous reset
+    generic(width: integer);
+    port(clk, 
+         reset:      in  STD_LOGIC;
+         d:          in  STD_LOGIC_VECTOR(width-1 downto 0);
+         q:          out STD_LOGIC_VECTOR(width-1 downto 0));
+  end;
+
+  architecture asynchronous of flopr is
+  begin
+    process(clk, reset) begin
+      if reset then  q <= (others => '0');
+      elsif rising_edge(clk) then
+        q <= d;
+      end if;
+    end process;
+  end;
+
+----------------------------------------------------------------------------------------------
+-------------- 2 - INPUT MUX (mux2) ----------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE;
+  use IEEE.STD_LOGIC_1164.all;
+
+  entity mux2 is -- two-input multiplexer
+    generic(width: integer);
+    port(d0, d1: in  STD_LOGIC_VECTOR(width-1 downto 0);
+         s:      in  STD_LOGIC;
+         y:      out STD_LOGIC_VECTOR(width-1 downto 0));
+  end;
+
+  architecture behave of mux2 is
+  begin
+    y <= d1 when s else d0;
+  end;
+
+----------------------------------------------------------------------------------------------
+-------------- ALU (alu) ---------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+  library IEEE; 
+  use IEEE.STD_LOGIC_1164.all; 
+  --use IEEE.NUMERIC_STD_UNSIGNED.all;
+  use ieee.std_logic_unsigned.all ;
+  use ieee.std_logic_arith.all ;
+
+  entity alu is 
+    port(a, b:       in  STD_LOGIC_VECTOR(31 downto 0);
+         alucontrol: in  STD_LOGIC_VECTOR(2 downto 0);
+         result:     buffer STD_LOGIC_VECTOR(31 downto 0);
+         zero:       out STD_LOGIC);
+  end;
+
+  architecture behave of alu is
+    signal condinvb, sum: STD_LOGIC_VECTOR(31 downto 0);
+  begin
+    condinvb <= not b when alucontrol(2) else b;
+    sum <= a + condinvb + alucontrol(2);
+
+    process(all) begin
+      case alucontrol(1 downto 0) is
+        when "00"   => result <= a and b; 
+        when "01"   => result <= a or b; 
+        when "10"   => result <= sum; 
+        when "11"   => result <= (0 => sum(31), others => '0'); 
+        when others => result <= (others => 'X'); 
+      end case;
+    end process;
+
+    zero <= '1' when result = X"00000000" else '0';
+  end;
